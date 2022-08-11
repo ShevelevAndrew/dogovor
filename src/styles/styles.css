@@ -77,4 +77,20 @@ label {
 .rbt-close-content {
   color: #212529;
 }
+
+h9 {
+  font-size: 10px;
+}
+
+.mall-20 {
+  margin: 20px;
+}
+
+input:invalid {
+  border: 2px solid #ff0000;
+}
+
+input:valid {
+  border: 1px solid #ced4da;
+}
 /*# sourceMappingURL=styles.css.map */

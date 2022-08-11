@@ -10,7 +10,7 @@ import { Tags } from "./tags"
 
 const serchAccessDebounce = debounce((query, dispatch) => {
   dispatch(getAccess(query));
-}, 1000);
+}, 700);
 
 
 
@@ -30,9 +30,7 @@ export const AccessComponent = () => {
 
     const addTags = useCallback((objTag) => {
         setAccessTag(objTag)
-    },[])
-
-
+    }, [])
 
     const errorMessage = (error) => {
         if (show) {
@@ -60,14 +58,17 @@ export const AccessComponent = () => {
         return access.filter((access)=>{return access.id === id})
     }
     const createOrUpdate = () => {
-        dispatch(createAccess({
-            id: valueID,
-            header: valueHeader,
-            discription: valueDescription,
-            accesstags: accessTag
-        }))
+        if (!!valueHeader || !!valueDescription) {
+            dispatch(createAccess({
+                id: valueID,
+                header: valueHeader,
+                discription: valueDescription,
+                accesstags: accessTag
+            }))
+
+            serchAccessDebounce(value, dispatch);
+        }
         setTugleAccess(!tugleAccess)
-        serchAccessDebounce(value, dispatch);
     }
 
     return (
@@ -83,7 +84,7 @@ export const AccessComponent = () => {
                             &#10094;
                         </Button>
                         <FormControl
-                            value= {valueHeader} 
+                            value= {valueHeader}
                             onChange={(e) => setValueHeader(e.target.value)}
                             type="text"
                             placeholder="Заголовок"
@@ -94,12 +95,12 @@ export const AccessComponent = () => {
                         idClient={valueID ? getValue(valueID)[0].accesstags : ''}
                     />
                     <FormControl
-                        value={valueDescription} 
+                        value={valueDescription}
                         onChange={(e) => setValueDescription(e.target.value)}
                         className="mb-2"
                         as="textarea"
-                        rows={valueDescription.split('\n').length > 20
-                            ? 20
+                        rows={valueDescription.split('\n').length > (window.innerHeight - 120) / 34
+                            ? (window.innerHeight - 120) / 34
                             : valueDescription.split('\n').length} placeholder="Описание"
                     />
                 </div>
@@ -131,6 +132,13 @@ export const AccessComponent = () => {
                                 <h4 className="card-header text-white bg-secondary">{access.header}</h4>
                                 <div className="card-body">
                                     <p className="card-text textbox ">{access.discription}</p>
+                                </div>
+                                <div className="card-header text-white bg-secondary botom-card">
+                                    {
+                                        access.accesstags.length > 0 && access.accesstags.map((tag) => {
+                                            return <div key={tag.id}>{tag.name}</div>
+                                        })
+                                    }
                                 </div>
                                 {/* <div className="card-footer">
                                 <Button variant="btn btn-primary">Learn More</Button>
