@@ -1,0 +1,34 @@
+
+@import "./login";
+
+
+
+.textbox {
+    white-space: pre-line;
+    text-overflow: ellipsis;
+    max-height: 100px;
+    overflow: hidden;
+}
+.mr-10 {
+    margin-right: 10px;
+    text-decoration: none;
+}
+.mr-10:hover {
+    color: #bdbdbd;
+}
+.tc-w {
+    color: #fff;
+}
+
+.curs {
+    cursor: pointer;
+}
+
+
+.rbt-token-label, .rbt-close {
+    color: #212529;
+    background-color: #f0efef;
+}
+.rbt-close-content{
+    color: #212529;
+}
