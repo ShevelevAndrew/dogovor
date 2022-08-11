@@ -6,7 +6,7 @@ class Request {
 
     this.request = logger(
       axios.create({
-        baseURL: "http://192.168.111.130:3000",
+        baseURL: "http://192.168.111.135:3000",
       })
     );
     this.token = token;
@@ -14,7 +14,7 @@ class Request {
   get = (url) => {
     return this.request.get(url);
   };
-  post = (url, params, token ) => {
+  post = (url, params, token) => {
     return this.request.post(url, params, { headers: {"Authorization": `Bearer ${token}`} });
   };
 }

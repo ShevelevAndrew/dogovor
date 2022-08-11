@@ -23,7 +23,9 @@ export const Tags = ({objTag, idClient}) => {
                     return false
                 }
             })
+
             newFilter.push(...filter)
+            return true
         })
         return newFilter
     }

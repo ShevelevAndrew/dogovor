@@ -12,7 +12,7 @@ function App() {
   const [session, setSession] = useState(null);
   const { auth } = useSelector((state) => state.login)
   const isAuth = !!session;
-  
+
   useEffect(() => {
     const user = auth
       if (user.token) {
@@ -48,7 +48,6 @@ function App() {
               </PublicRoute>
             }
           />
-          
           <Route
             path="/out"
             element={

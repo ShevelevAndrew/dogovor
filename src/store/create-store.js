@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { searchAccessApi, createAccessApi, loginApi } from "../api/access"
-import { getClientsApi } from "../api/clients"
+import { getClientsApi, getPhoneApi } from "../api/clients"
 import { accessReducer } from "./access"
 import { loginReducer } from "./login"
 import { clientsReducer } from "./clients"
@@ -13,7 +13,8 @@ const api = {
   searchAccessApi,
   loginApi,
   getClientsApi,
-  createAccessApi
+  createAccessApi,
+  getPhoneApi
 }
 const persistConfig = {
   key: "root",
